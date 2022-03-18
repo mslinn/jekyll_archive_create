@@ -8,7 +8,7 @@ require "tmpdir"
 require "zlib"
 require "zip"
 require_relative "jekyll_make_archive/version"
-require_relative "jekyll_plugin_logger"
+require "jekyll_plugin_logger"
 
 # Makes tar or zip file based on _config.yml entry
 class MakeArchive < Jekyll::Generator
