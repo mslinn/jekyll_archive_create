@@ -1,5 +1,11 @@
 # frozen_string_literal: true
 
+require "fileutils"
+require "ptools"
+require "rubygems"
+require "rubygems/package"
+require "tmpdir"
+require "zlib"
 require "zip"
 require_relative "jekyll_make_archive/version"
 require_relative "jekyll_plugin_logger"
