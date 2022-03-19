@@ -8,7 +8,6 @@ require "rubygems/package"
 require "tmpdir"
 require "zlib"
 require "zip"
-require_relative "jekyll_archive_create/version"
 
 module Jekyll
   # Makes tar or zip file based on _config.yml entry
@@ -18,7 +17,7 @@ module Jekyll
     # Method prescribed by the Jekyll plugin lifecycle.
     # @param site [Jekyll.Site] Automatically provided by Jekyll plugin mechanism
     # @return [void]
-    def generate(site)d
+    def generate(site)
       @live_reload = site.config["livereload"]
 
       archive_config = site.config["make_archive"]

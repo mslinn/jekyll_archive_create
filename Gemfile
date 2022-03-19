@@ -2,10 +2,10 @@
 
 source "https://rubygems.org"
 
-# Specify your gem's dependencies in jekyll_archive_create.gemspec
+# Gem dependencies are specified in jekyll_archive_create.gemspec
 gemspec
 
-gem 'bundler', require: false
-gem 'rake', require: false
-gem 'rspec', require: false
-gem 'rubocop', '= 1.18.0', require: false # rubocop-jekyll requires this older version
+gem "bundler", require: false
+gem "rake", require: false
+gem "rspec", require: false
+gem "rubocop", "= 1.18.0", require: false # rubocop-jekyll requires this older version

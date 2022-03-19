@@ -36,7 +36,7 @@ More information is available on my web site about [my Jekyll plugins](https://w
 
 ## Installation
 
-Add this line to your application's Gemfile, within the `jekyll_plugins` group:
+Add this line to your Jekyll project's Gemfile, within the `jekyll_plugins` group:
 
 ```ruby
 group :jekyll_plugins do
