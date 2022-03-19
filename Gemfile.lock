@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    jekyll_make_archive (1.0.0)
+    jekyll_archive_create (1.0.0)
       jekyll (>= 3.5.0)
       jekyll_plugin_logger
 
@@ -121,7 +121,7 @@ PLATFORMS
 DEPENDENCIES
   bundler
   debase
-  jekyll_make_archive!
+  jekyll_archive_create!
   rake (~> 13.0)
   rspec (~> 3.0)
   rubocop

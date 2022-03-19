@@ -1,5 +1,5 @@
-Jekyll_make_archive
-[![Gem Version](https://badge.fury.io/rb/jekyll_make_archive.svg)](https://badge.fury.io/rb/jekyll_make_archive)
+jekyll_archive_create
+[![Gem Version](https://badge.fury.io/rb/jekyll_archive_create.svg)](https://badge.fury.io/rb/jekyll_archive_create)
 ===========
 
 This is a Jekyll plugin that makes tar or zip files based on `_config.yml` entries.
@@ -40,7 +40,7 @@ Add this line to your application's Gemfile, within the `jekyll_plugins` group:
 
 ```ruby
 group :jekyll_plugins do
-  gem 'jekyll_make_archive'
+  gem 'jekyll_archive_create'
 end
 ```
 
@@ -50,7 +50,7 @@ And then execute:
 
 Or install it yourself as:
 
-    $ gem install jekyll_make_archive
+    $ gem install jekyll_archive_create
 
 
 ## Development
@@ -80,7 +80,7 @@ To release a new version,
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/mslinn/jekyll_make_archive.
+Bug reports and pull requests are welcome on GitHub at https://github.com/mslinn/jekyll_archive_create.
 
 
 ## License
