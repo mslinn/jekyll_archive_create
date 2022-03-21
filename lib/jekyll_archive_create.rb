@@ -8,6 +8,7 @@ require "rubygems/package"
 require "tmpdir"
 require "zlib"
 require "zip"
+require_relative "jekyll_archive_create/version"
 
 module Jekyll
   # Makes tar or zip file based on _config.yml entry
@@ -160,5 +161,6 @@ module Jekyll
       end
     end
   end
-  info { "Loaded jekyll_archive_create plugin." }
 end
+
+Jekyll.info { "Loaded jekyll_archive_create v#{JekyllArchiveCreate::VERSION} plugin." }

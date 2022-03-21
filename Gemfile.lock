@@ -3,7 +3,7 @@ PATH
   specs:
     jekyll_archive_create (1.0.0)
       jekyll (>= 3.5.0)
-      jekyll_plugin_logger
+      jekyll_plugin_logger (~> 2.0.0)
 
 GEM
   remote: https://rubygems.org/
