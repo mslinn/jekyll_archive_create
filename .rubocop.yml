@@ -11,3 +11,25 @@ AllCops:
 
 Layout/LineLength:
   Max: 150
+
+Metrics/AbcSize:
+  Max: 20
+  Exclude:
+    - "test/**/*"
+
+Metrics/BlockLength:
+  Exclude:
+    - "*.gemspec"
+    - "Rakefile"
+
+Metrics/ClassLength:
+  Exclude:
+    - "test/**/*"
+
+Metrics/MethodLength:
+  Max: 18
+  Exclude:
+    - "test/**/*"
+
+Style/StringLiterals:
+  EnforcedStyle: double_quotes
