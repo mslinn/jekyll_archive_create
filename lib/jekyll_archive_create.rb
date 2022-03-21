@@ -45,7 +45,7 @@ module Jekyll
       delete_archive = config["delete"]
       @force_delete = delete_archive.nil? ? !@live_reload : delete_archive
 
-      debug { "@archive_name=#{@archive_name}; @live_reload=#{@live_reload}; @force_delete=#{@force_delete}; @archive_files=#{@archive_files}" }
+      Jekyll.debug { "@archive_name=#{@archive_name}; @live_reload=#{@live_reload}; @force_delete=#{@force_delete}; @archive_files=#{@archive_files}" }
     end
 
     def archive_type(archive_name)
@@ -63,15 +63,15 @@ module Jekyll
       archive_exists = File.exist?(archive_name_full)
       return if archive_exists && @live_reload
 
-      debug { "#{archive_name_full} exists? #{archive_exists}" }
+      Jekyll.debug { "#{archive_name_full} exists? #{archive_exists}" }
       if archive_exists && @force_delete
-        debug "Deleting old #{archive_name_full}"
+        Jekyll.debug "Deleting old #{archive_name_full}"
         File.delete(archive_name_full)
       end
 
       make_tar_or_zip(archive_exists, archive_name_full, source)
 
-      debug { "Looking for #{@archive_name} in .gitignore..." }
+      Jekyll.debug { "Looking for #{@archive_name} in .gitignore..." }
       return if File.foreach(".gitignore").grep(%r!^#{@archive_name}\n?!).any?
 
       warn "#{@archive_name} not found in .gitignore, adding entry."
@@ -84,7 +84,7 @@ module Jekyll
       Dir.mktmpdir do |dirname|
         @archive_files.each do |filename|
           fn, filename_full = qualify_file_name(filename, source)
-          debug { "Copying #{filename_full} to temporary directory #{dirname}; filename=#{filename}; fn=#{fn}" }
+          Jekyll.debug { "Copying #{filename_full} to temporary directory #{dirname}; filename=#{filename}; fn=#{fn}" }
           FileUtils.copy(filename_full, dirname)
         end
         write_tar(tar_name, dirname)
@@ -93,7 +93,7 @@ module Jekyll
 
     def make_tar_or_zip(archive_exists, archive_name_full, source)
       if !archive_exists || @force_delete
-        debug { "Making #{archive_name_full}" }
+        Jekyll.debug { "Making #{archive_name_full}" }
         case @archive_type
         when :tar
           make_tar(archive_name_full, source)
@@ -108,7 +108,7 @@ module Jekyll
       Zip::File.open(zip_name, Zip::File::CREATE) do |zipfile|
         @archive_files.each do |filename|
           filename_in_archive, filename_original = qualify_file_name(filename, source)
-          debug { "make_zip: adding #{filename_original} to #{zip_name} as #{filename_in_archive}" }
+          Jekyll.debug { "make_zip: adding #{filename_original} to #{zip_name} as #{filename_in_archive}" }
           zipfile.add(filename_in_archive, filename_original)
         end
       end
@@ -141,22 +141,22 @@ module Jekyll
     def qualify_file_name(path, source)
       case path[0]
       when "/" # Is the file absolute?
-        debug { "Absolute filename: #{path}" }
+        Jekyll.debug { "Absolute filename: #{path}" }
         [File.basename(path), path]
       when "!" # Should the file be found on the PATH?
         clean_path = path[1..-1]
         filename_full = File.which(clean_path)
         abort "Error: #{clean_path} is not on the PATH." if filename_full.nil?
 
-        debug { "File on PATH: #{clean_path} -> #{filename_full}" }
+        Jekyll.debug { "File on PATH: #{clean_path} -> #{filename_full}" }
         [File.basename(clean_path), filename_full]
       when "~" # Is the file relative to user's home directory?
         clean_path = path[2..-1]
         filename_full = File.join(ENV["HOME"], clean_path)
-        debug { "File in home directory: #{clean_path} -> #{filename_full}" }
+        Jekyll.debug { "File in home directory: #{clean_path} -> #{filename_full}" }
         [File.basename(clean_path), filename_full]
       else # The file is relative to the Jekyll website top-level directory
-        debug { "Relative filename: #{path}" }
+        Jekyll.debug { "Relative filename: #{path}" }
         [File.basename(path), File.join(source, path)] # join yields the fully qualified path
       end
     end
