@@ -13,7 +13,7 @@ require_relative "jekyll_archive_create/version"
 
 module Jekyll
   # Makes tar or zip file based on _config.yml entry
-  class MakeArchive < Jekyll::Generator
+  class MakeArchive < Jekyll::Generator # rubocop:disable Metrics/ClassLength
     priority :high
 
     # Method prescribed by the Jekyll plugin lifecycle.

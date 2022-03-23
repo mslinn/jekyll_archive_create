@@ -1,4 +1,3 @@
-require: rubocop-jekyll
 inherit_gem:
   rubocop-jekyll: .rubocop.yml
 
@@ -23,12 +22,16 @@ Metrics/BlockLength:
     - "Rakefile"
 
 Metrics/ClassLength:
+  Max: 50
   Exclude:
     - "test/**/*"
 
 Metrics/MethodLength:
   Exclude:
     - "test/**/*"
+
+Style/CommandLiteral:
+  Enabled: false
 
 Style/StringLiterals:
   EnforcedStyle: double_quotes
