@@ -11,9 +11,9 @@ Gem::Specification.new do |spec|
   spec.description = <<~END_OF_DESC
     Jekyll generator for creating tar and zip files.
   END_OF_DESC
-  spec.email = ["mslinn@mslinn.com"]
+  spec.emails = ["mslinn@mslinn.com"]
   spec.files = Dir[".rubocop.yml", "LICENSE.*", "Rakefile", "{lib,spec}/**/*", "*.gemspec", "*.md"]
-  spec.homepage = "https://www.mslinn.com/blog/2020/10/03/jekyll-plugins.html"
+  spec.homepage = "https://www.mslinn.com/blog/2020/10/03/jekyll-plugins.html#make_archive"
   spec.license = "MIT"
   spec.metadata = {
     "allowed_push_host" => "https://rubygems.org",
