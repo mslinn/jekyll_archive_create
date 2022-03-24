@@ -161,7 +161,7 @@ module Jekyll
         [File.basename(path), File.join(source, path)] # join yields the fully qualified path
       end
     end
+
+    PluginMetaLogger.instance.logger.info { "Loaded jekyll_archive_create v#{JekyllArchiveCreate::VERSION} plugin." }
   end
 end
-
-PluginMetaLogger.instance.logger.info { "Loaded jekyll_archive_create v#{JekyllArchiveCreate::VERSION} plugin." }
