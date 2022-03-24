@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
 require "fileutils"
-require "jekyll"
-require "jekyll_plugin_logger"
 require "ptools"
 require "rubygems"
 require "rubygems/package"
