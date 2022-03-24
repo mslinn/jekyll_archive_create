@@ -2,7 +2,6 @@
 
 require_relative "lib/jekyll_archive_create/version"
 
-# rubocop:disable Metrics/BlockLength
 Gem::Specification.new do |spec|
   github = "https://github.com/mslinn/jekyll_archive_create"
 
@@ -43,4 +42,3 @@ Gem::Specification.new do |spec|
   # spec.add_development_dependency "rubocop-rspec"
   spec.add_development_dependency "ruby-debug-ide"
 end
-# rubocop:enable Metrics/BlockLength
