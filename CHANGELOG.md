@@ -1,5 +1,5 @@
 ## 1.0.1 / 2022-04-05
-  * Updated to jekyll_plugin_logger v2.0.2
+  * Updated to jekyll_plugin_logger v2.1.0
 
 
 ## 1.0.0 / 2022-03-13

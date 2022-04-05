@@ -162,6 +162,6 @@ module Jekyll
       end
     end
 
-    PluginMetaLogger.instance.logger.info { "Loaded jekyll_archive_create v#{JekyllArchiveCreate::VERSION} plugin." }
+    PluginMetaLogger.instance.logger.info { "Loaded jekyll_archive_create v#{JekyllArchiveCreateVersion::VERSION} plugin." }
   end
 end
