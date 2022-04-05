@@ -19,7 +19,7 @@ module Jekyll
     # @param site [Jekyll.Site] Automatically provided by Jekyll plugin mechanism
     # @return [void]
     def generate(site)
-      @logger = PluginMetaLogger.instance.new_logger(self)
+      @logger = PluginMetaLogger.instance.new_logger(self, PluginMetaLogger.instance.config)
       @live_reload = site.config["livereload"]
 
       archive_config = site.config["make_archive"]

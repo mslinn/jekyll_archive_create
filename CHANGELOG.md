@@ -1,3 +1,7 @@
+## 1.0.1 / 2022-04-05
+  * Updated to jekyll_plugin_logger v2.0.2
+
+
 ## 1.0.0 / 2022-03-13
   * Made into a Ruby gem and published on RubyGems.org as [jekyll_archive_create](https://rubygems.org/gems/jekyll_archive_create).
   * `bin/attach` script added for debugging
