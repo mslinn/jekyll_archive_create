@@ -23,20 +23,20 @@ Gemspec/DeprecatedAttributeAssignment:
 Gemspec/RequireMFA:
   Enabled: false
 
-Layout/InitialIndentation:
-  Exclude:
-    - README.md
-
-Layout/MultilineMethodCallIndentation:
-  Enabled: false
-
 Layout/HashAlignment:
   EnforcedColonStyle: table
   Exclude:
     - jekyll_archive_create.gemspec
 
+Layout/InitialIndentation:
+  Exclude:
+    - README.md
+
 Layout/LineLength:
   Max: 150
+
+Layout/MultilineMethodCallIndentation:
+  Enabled: false
 
 Metrics/AbcSize:
   Max: 45
