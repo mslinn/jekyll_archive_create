@@ -34,7 +34,7 @@ module Jekyll
     private
 
     def setup_instance_variables(config)
-      @archive_name = config['archive_name'] # Relative to _site
+      @archive_name = config['archive_name'] # Relative to _site.source
       abort 'Error: archive_name was not specified in _config.yml.' if @archive_name.nil?
 
       @archive_type = archive_type(@archive_name)
