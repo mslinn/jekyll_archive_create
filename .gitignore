@@ -1,5 +1,5 @@
 /.bundle/
-jekyll-cache/
+.jekyll-cache/
 /.yardoc
 /_yardoc/
 /coverage/
@@ -12,3 +12,6 @@ spec/status_persistence.txt
 demo/_site/
 demo/.jekyll-cache/
 demo/.jekyll-metadata
+demo/.gitignore
+demo/*.zip
+demo/*.tar

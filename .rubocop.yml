@@ -1,37 +1,106 @@
-inherit_gem:
-  rubocop-jekyll: .rubocop.yml
+require:
+  # - rubocop-jekyll
+  - rubocop-md
+  - rubocop-performance
+  - rubocop-rake
+  - rubocop-rspec
+
+# inherit_gem:
+#   rubocop-jekyll: .rubocop.yml
 
 AllCops:
   Exclude:
-      - vendor/**/*
-      - Gemfile*
+    - demo/_site/**/*
+    - exe/**/*
+    - vendor/**/*
+    - Gemfile*
   NewCops: enable
   TargetRubyVersion: 2.6
+
+Gemspec/DeprecatedAttributeAssignment:
+  Enabled: false
+
+Gemspec/RequireMFA:
+  Enabled: false
+
+Layout/InitialIndentation:
+  Exclude:
+    - README.md
+
+Layout/MultilineMethodCallIndentation:
+  Enabled: false
+
+Layout/HashAlignment:
+  EnforcedColonStyle: table
+  Exclude:
+    - jekyll_archive_create.gemspec
 
 Layout/LineLength:
   Max: 150
 
 Metrics/AbcSize:
-  Max: 20
+  Max: 45
+
+Lint/RedundantCopDisableDirective:
   Exclude:
-    - "test/**/*"
+    - jekyll_archive_create.gemspec
 
 Metrics/BlockLength:
   Exclude:
-    - "*.gemspec"
-    - "Rakefile"
+    - jekyll_archive_create.gemspec
+    - spec/**/*
 
 Metrics/ClassLength:
-  Max: 50
   Exclude:
-    - "test/**/*"
+    - spec/**/*
+  Max: 40
+
+Metrics/CyclomaticComplexity:
+  Max: 20
 
 Metrics/MethodLength:
+  Max: 40
+
+Metrics/PerceivedComplexity:
+  Max: 15
+
+Naming/FileName:
   Exclude:
-    - "test/**/*"
+    - Rakefile
+
+RSpec/ExampleLength:
+  Max: 20
+
+RSpec/MultipleExpectations:
+  Max: 15
 
 Style/CommandLiteral:
   Enabled: false
 
+Style/CommentedKeyword:
+  Enabled: false
+
+Style/Documentation:
+  Enabled: false
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+Style/PercentLiteralDelimiters:
+  Enabled: false
+
+Style/RegexpLiteral:
+  Enabled: false
+
+Style/StringConcatenation:
+  Exclude:
+    - spec/**/*
+
 Style/StringLiterals:
-  EnforcedStyle: double_quotes
+  Enabled: false
+
+Style/StringLiteralsInInterpolation:
+  Enabled: false
+
+Style/TrailingCommaInHashLiteral:
+  EnforcedStyleForMultiline: comma

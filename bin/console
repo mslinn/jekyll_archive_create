@@ -1,7 +1,5 @@
 #!/usr/bin/env ruby
 
-# frozen_string_literal: true
-
 require "jekyll"
 require "bundler/setup"
 require "jekyll_archive_create"

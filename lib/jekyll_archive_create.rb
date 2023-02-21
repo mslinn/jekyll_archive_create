@@ -1,14 +1,13 @@
-# frozen_string_literal: true
-
-require "fileutils"
-require "jekyll_plugin_logger"
-require "ptools"
-require "rubygems"
-require "rubygems/package"
-require "tmpdir"
-require "zlib"
-require "zip"
-require_relative "jekyll_archive_create/version"
+require 'fileutils'
+require 'jekyll'
+require 'jekyll_plugin_logger'
+require 'ptools'
+require 'rubygems'
+require 'rubygems/package'
+require 'tmpdir'
+require 'zlib'
+require 'zip'
+require_relative 'jekyll_archive_create/version'
 
 module Jekyll
   # Makes tar or zip file based on _config.yml entry
@@ -20,9 +19,9 @@ module Jekyll
     # @return [void]
     def generate(site)
       @logger = PluginMetaLogger.instance.new_logger(self, PluginMetaLogger.instance.config)
-      @live_reload = site.config["livereload"]
+      @live_reload = site.config['livereload']
 
-      archive_config = site.config["make_archive"]
+      archive_config = site.config['make_archive']
       return if archive_config.nil?
 
       archive_config.each do |config|
@@ -35,24 +34,28 @@ module Jekyll
     private
 
     def setup_instance_variables(config)
-      @archive_name = config["archive_name"] # Relative to _site
-      abort "Error: archive_name was not specified in _config.yml." if @archive_name.nil?
+      @archive_name = config['archive_name'] # Relative to _site
+      abort 'Error: archive_name was not specified in _config.yml.' if @archive_name.nil?
 
       @archive_type = archive_type(@archive_name)
 
-      @archive_files = config["files"].compact
-      abort "Error: archive files were not specified in _config.yml." if @archive_files.nil?
+      @archive_files = config['files'].compact
+      abort 'Error: archive files were not specified in _config.yml.' if @archive_files.nil?
 
-      delete_archive = config["delete"]
+      delete_archive = config['delete']
       @force_delete = delete_archive.nil? ? !@live_reload : delete_archive
 
-      @logger.debug { "@archive_name=#{@archive_name}; @live_reload=#{@live_reload}; @force_delete=#{@force_delete}; @archive_files=#{@archive_files}" }
+      @logger.debug do
+        part1 = "@archive_name=#{@archive_name}; @live_reload=#{@live_reload};"
+        part2 = "@force_delete=#{@force_delete}; @archive_files=#{@archive_files}"
+        "#{part1} #{part2}"
+      end
     end
 
     def archive_type(archive_name)
-      if archive_name.end_with? ".zip"
+      if archive_name.end_with? '.zip'
         :zip
-      elsif archive_name.end_with? ".tar"
+      elsif archive_name.end_with? '.tar'
         :tar
       else
         abort "Error: archive must be zip or tar; #{archive_name} is of an unknown archive type."
@@ -73,10 +76,16 @@ module Jekyll
       make_tar_or_zip(archive_exists, archive_name_full, source)
 
       @logger.debug { "Looking for #{@archive_name} in .gitignore..." }
-      return if File.foreach(".gitignore").grep(%r!^#{@archive_name}\n?!).any?
+      if File.exist? '.gitignore'
+        return if File.foreach('.gitignore').grep(%r!^#{@archive_name}\n?!).any?
 
-      warn "#{@archive_name} not found in .gitignore, adding entry."
-      File.open(".gitignore", "a") do |f|
+        @logger.warn "#{@archive_name} was not found in .gitignore, adding entry."
+      else
+        @logger.warn "#{Dir.pwd}/.gitignore does not exist, creating it."
+        FileUtils.touch '.gitignore'
+      end
+
+      File.open('.gitignore', 'a') do |f|
         f.puts File.basename(@archive_name)
       end
     end
@@ -93,14 +102,14 @@ module Jekyll
     end
 
     def make_tar_or_zip(archive_exists, archive_name_full, source)
-      if !archive_exists || @force_delete
-        @logger.debug { "Making #{archive_name_full}" }
-        case @archive_type
-        when :tar
-          make_tar(archive_name_full, source)
-        when :zip
-          make_zip(archive_name_full, source)
-        end
+      return unless !archive_exists || @force_delete
+
+      @logger.debug { "Making #{archive_name_full}" }
+      case @archive_type
+      when :tar
+        make_tar(archive_name_full, source)
+      when :zip
+        make_zip(archive_name_full, source)
       end
     end
 
@@ -117,9 +126,9 @@ module Jekyll
 
     def write_tar(tar_name, dirname)
       # Modified from https://gist.github.com/sinisterchipmunk/1335041/5be4e6039d899c9b8cca41869dc6861c8eb71f13
-      File.open(tar_name, "wb") do |tarfile|
+      File.open(tar_name, 'wb') do |tarfile|
         Gem::Package::TarWriter.new(tarfile) do |tar|
-          Dir[File.join(dirname, "**/*")].each do |filename|
+          Dir[File.join(dirname, '**/*')].each do |filename|
             write_tar_entry(tar, dirname, filename)
           end
         end
@@ -128,12 +137,12 @@ module Jekyll
 
     def write_tar_entry(tar, dirname, filename)
       mode = File.stat(filename).mode
-      relative_file = filename.sub(%r!^#{Regexp.escape dirname}/?!, "")
+      relative_file = filename.sub(%r!^#{Regexp.escape dirname}/?!, '')
       if File.directory?(filename)
         tar.mkdir relative_file, mode
       else
         tar.add_file relative_file, mode do |tf|
-          File.open(filename, "rb") { |f| tf.write f.read }
+          File.open(filename, 'rb') { |f| tf.write f.read }
         end
       end
     end
@@ -141,19 +150,19 @@ module Jekyll
     # @return tuple of filename (without path) and fully qualified filename
     def qualify_file_name(path, source)
       case path[0]
-      when "/" # Is the file absolute?
+      when '/' # Is the file absolute?
         @logger.debug { "Absolute filename: #{path}" }
         [File.basename(path), path]
-      when "!" # Should the file be found on the PATH?
-        clean_path = path[1..-1]
+      when '!' # Should the file be found on the PATH?
+        clean_path = path[1..]
         filename_full = File.which(clean_path)
         abort "Error: #{clean_path} is not on the PATH." if filename_full.nil?
 
         @logger.debug { "File on PATH: #{clean_path} -> #{filename_full}" }
         [File.basename(clean_path), filename_full]
-      when "~" # Is the file relative to user's home directory?
-        clean_path = path[2..-1]
-        filename_full = File.join(ENV["HOME"], clean_path)
+      when '~' # Is the file relative to user's home directory?
+        clean_path = path[2..]
+        filename_full = File.join(Dir.home, clean_path)
         @logger.debug { "File in home directory: #{clean_path} -> #{filename_full}" }
         [File.basename(clean_path), filename_full]
       else # The file is relative to the Jekyll website top-level directory
