@@ -5,6 +5,7 @@
 /coverage/
 /doc/
 /pkg/
+/exe/*
 /spec/reports/
 /tmp/
 Gemfile.lock
