@@ -1,8 +1,10 @@
 /.bundle/
 .jekyll-cache/
 /.yardoc
+/_site/
 /_yardoc/
 /coverage/
+/.jekyll-metadata
 /doc/
 /pkg/
 /exe/*
