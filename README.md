@@ -3,7 +3,12 @@
 
 This is a Jekyll plugin that makes tar or zip files based on `_config.yml` entries.
 
-In production mode, the archives are built each time Jekyll generates the website. In development mode, the archives are only built if they do not already exist, or if `delete: true` is set for that archive in `_config.yml`. Archives are placed in the top-level of the Jekyll project, and are copied to `_site` by Jekyll's normal build process. Entries are created in `.gitignore` for each of the generated archives.
+In production mode, the archives are built each time Jekyll generates the website.
+
+In development mode, the archives are only built if they do not already exist,
+or if `delete: true` is set for that archive in `_config.yml`.
+Archives are placed in the top-level of the Jekyll project, and are copied to `_site` by Jekyll's normal build process.
+Entries are created in `.gitignore` for each of the generated archives.
 
 
 ## Usage
@@ -19,7 +24,10 @@ This plugin supports 4 types of file specifications:
 
 ## `_config.yml` Syntax
 
-Any number of archives can be specified. Each archive has 3 properties: `archive_name`, `delete` (defaults to true) and `files`. Take care that the dashes have exactly 2 spaces before them, and that the 2 lines following each dash have exactly 4 spaces in front.
+Any number of archives can be specified. Each archive has 3 properties: `archive_name`,
+`delete` (defaults to true) and `files`.
+Take care that the dashes have exactly 2 spaces before them,
+and that the 2 lines following each dash have exactly 4 spaces in front.
 
 ```yaml
 make_archive:
@@ -38,7 +46,8 @@ The file called `date` contains the executable program or script of that name.
 
 ## Additional Information
 
-More information is available on my website about [my Jekyll plugins](https://mslinn.com/jekyll/3000-jekyll-plugins.html#archive_create).
+More information is available on my website about
+[my Jekyll plugins](https://mslinn.com/jekyll/3000-jekyll-plugins.html#archive_create).
 
 
 ## Installation
@@ -93,7 +102,8 @@ To run under a debugger, for example Visual Studio Code:
    $ demo/bin/debug
    ```
 
-3. Once the `Fast Debugger` signon appears, launch the Visual Studio Code launch configuration called `Attach rdebug-ide`.
+3. Once the `Fast Debugger` signon appears,
+   launch the Visual Studio Code launch configuration called `Attach rdebug-ide`.
 
 4. View the generated website at [`http://localhost:4444`](http://localhost:4444).
 

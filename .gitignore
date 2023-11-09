@@ -1,13 +1,13 @@
 /.bundle/
 .jekyll-cache/
+/.jekyll-metadata
 /.yardoc
 /_site/
 /_yardoc/
 /coverage/
-/.jekyll-metadata
 /doc/
+/exe/
 /pkg/
-/exe/*
 /spec/reports/
 /tmp/
 Gemfile.lock

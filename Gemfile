@@ -1,10 +1,11 @@
-source "https://rubygems.org"
+source 'https://rubygems.org'
 
 # Gem dependencies are specified in jekyll_archive_create.gemspec
 gemspec
 
 group :test, :development do
   gem 'debug', '>= 1.0.0', require: false
+  gem 'ptools', require: false
   gem 'rake', require: false
   gem 'rspec', require: false
   gem 'rubocop', require: false
@@ -12,5 +13,4 @@ group :test, :development do
   gem 'rubocop-performance', require: false
   gem 'rubocop-rake', require: false
   gem 'rubocop-rspec', require: false
-  gem 'ruby-debug-ide', require: false
 end
